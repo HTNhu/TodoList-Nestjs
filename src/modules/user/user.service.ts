@@ -29,7 +29,8 @@ export class UsersService {
     const findUser = this.users.find(x => x.username === username && x.password === password)
     if(!findUser)
     return 'Wrong username or password!'
-    const token = jwt.sign({id: findUser.id}, 'secret')
+    const token = jwt.sign(findUser, 'nhune')
     return token
-}
+  }
+  
 }
