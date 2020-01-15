@@ -13,10 +13,10 @@ export class TodoController {
 		console.log(req.user)
 		return await this.todoService.findAll()
     }
-    @Post('/detail')
+    @Get('/detail/:id')
 	@UseGuards(AuthGuard)
-	async todo(@Body() body): Promise<any> {
-		return await this.todoService.findById(body.id)
+	async todo(@Param() param): Promise<any> {
+		return await this.todoService.findById(param.id)
 	}
     @Post('/create')
 	@UseGuards(AuthGuard)
@@ -28,7 +28,7 @@ export class TodoController {
 	async updateTodo(@Body() body): Promise<any> {
 		return await this.todoService.updateTodo(body.id, body.name)
 	}
-	@Delete(':id/delete')
+	@Delete('delete/:id')
 	@UseGuards(AuthGuard)
 	async deleteTodo(@Param('id') id): Promise<any> {
 		console.log(id)
