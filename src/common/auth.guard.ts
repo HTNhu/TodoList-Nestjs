@@ -7,11 +7,11 @@ export class AuthGuard implements CanActivate {
     async canActivate(
       context: ExecutionContext,
     ){
-    
+    // get authorization(token) 
     const req = context.switchToHttp().getRequest() 
     const decodeToken = req && req.headers.authorization
     console.log(decodeToken)
-
+    // get user's information 
     const username = 'Nhu ne'
     const foundUser = await this.userService.findOne(username)
     req.user = foundUser
